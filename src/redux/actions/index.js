@@ -5,6 +5,9 @@ export const USER_LOGIN = 'USER_LOGIN';
 export const FETCH_CURRENCIES_REQUEST = 'FETCH_CURRENCIES_REQUEST';
 export const FETCH_CURRENCIES_SUCCSESS = 'FETCH_CURRENCIES_SUCCSESS';
 export const FETCH_CURRENCIES_FAILURE = 'FETCH_CURRENCIES_FAILURE';
+export const FETCH_EXCHANGE_RATES_SUCCSESS = 'FETCH_EXCHANGE_RATES_SUCCSESS';
+export const EXPENSES_ADD_INFO = 'EXPENSES_ADD_INFO';
+export const SUMMATION = 'SUMMATION';
 
 export const userLogin = (email) => ({
   type: USER_LOGIN,
@@ -20,7 +23,7 @@ const fetchCurrenciesRequest = () => ({
 const fetchCurrenciesSuccsess = (currencies) => ({
   type: FETCH_CURRENCIES_SUCCSESS,
   payload: {
-    currencies,
+    currencies: Object.keys(currencies).filter((currency) => currency !== 'USDT'),
   },
 });
 
@@ -36,6 +39,47 @@ export const fetchCurrenciesThunk = () => async (dispatch) => {
     dispatch(fetchCurrenciesRequest());
     const currencies = await fetchCurrency();
     dispatch(fetchCurrenciesSuccsess(currencies));
+  } catch (error) {
+    dispatch(fetchCurrenciesFailure(error));
+  }
+};
+
+export const summmation = () => ({
+  type: SUMMATION,
+});
+
+const fetchExchangeRatesSuccsess = (
+  currencies,
+  { id, value, description, currency, method, tag },
+) => ({
+  type: FETCH_EXCHANGE_RATES_SUCCSESS,
+  payload: {
+    id,
+    value,
+    description,
+    currency,
+    method,
+    tag,
+    exchangeRates: currencies,
+  },
+});
+
+export const fetchExchangeRatesSuccsessThunk = (
+  { id, value, description, currency, method, tag },
+) => async (dispatch) => {
+  try {
+    dispatch(fetchCurrenciesRequest());
+    const currencies = await fetchCurrency();
+    dispatch(fetchExchangeRatesSuccsess(
+      currencies,
+      { id,
+        value,
+        description,
+        currency,
+        method,
+        tag },
+    ));
+    dispatch(summmation());
   } catch (error) {
     dispatch(fetchCurrenciesFailure(error));
   }
