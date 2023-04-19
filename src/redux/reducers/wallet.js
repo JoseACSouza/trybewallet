@@ -3,7 +3,8 @@ import {
   FETCH_CURRENCIES_REQUEST,
   FETCH_CURRENCIES_SUCCSESS,
   FETCH_EXCHANGE_RATES_SUCCSESS,
-  SUMMATION,
+  ATT_EXPENSES,
+  REMOVE_EXPENSE,
 } from '../actions';
 // Esse reducer será responsável por tratar o todas as informações relacionadas as despesas
 const INITIAL_STATE = {
@@ -13,7 +14,6 @@ const INITIAL_STATE = {
   idToEdit: 0, // valor numérico que armazena o id da despesa que esta sendo editada
   isLoading: false,
   error: '',
-  summ: 0,
 };
 
 const walletReduce = (state = INITIAL_STATE, action) => {
@@ -38,7 +38,6 @@ const walletReduce = (state = INITIAL_STATE, action) => {
       error: action.payload.error,
     };
   }
-
   case FETCH_EXCHANGE_RATES_SUCCSESS: {
     return {
       ...state,
@@ -53,11 +52,16 @@ const walletReduce = (state = INITIAL_STATE, action) => {
         exchangeRates: action.payload.exchangeRates,
       }],
     }; }
-  case SUMMATION: {
+  case REMOVE_EXPENSE: {
     return {
       ...state,
-      summ: state.expenses
-        .reduce((a, b) => a + (b.value * b.exchangeRates[b.currency].ask), 0).toFixed(2),
+      expenses: [...action.payload.expenses],
+    };
+  }
+  case ATT_EXPENSES: {
+    return {
+      ...state,
+      expenses: [...state.expenses, action.payload.expenses],
     };
   }
   default: return state;

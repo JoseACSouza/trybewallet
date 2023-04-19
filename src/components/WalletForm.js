@@ -42,9 +42,9 @@ class WalletForm extends Component {
     this.setState({
       value: '',
       description: '',
-      currency: '',
-      method: '',
-      tag: '',
+      currency: 'USD',
+      method: 'Dinheiro',
+      tag: 'Alimentação',
     });
   };
 
@@ -128,9 +128,9 @@ WalletForm.propTypes = {
     PropTypes.string.isRequired,
   ).isRequired,
   isLoading: PropTypes.bool.isRequired,
-  expenses: PropTypes.shape({
-    length: PropTypes.func.isRequired,
-  }).isRequired,
+  expenses: PropTypes.arrayOf(
+    PropTypes.shape(PropTypes.string.isRequired).isRequired,
+  ).isRequired,
 };
 
 const mapStateToProps = (state) => ({

@@ -8,11 +8,27 @@ export const FETCH_CURRENCIES_FAILURE = 'FETCH_CURRENCIES_FAILURE';
 export const FETCH_EXCHANGE_RATES_SUCCSESS = 'FETCH_EXCHANGE_RATES_SUCCSESS';
 export const EXPENSES_ADD_INFO = 'EXPENSES_ADD_INFO';
 export const SUMMATION = 'SUMMATION';
+export const ATT_EXPENSES = 'ATT_EXPENSES';
+export const REMOVE_EXPENSE = 'REMOVE_EXPENSES';
 
 export const userLogin = (email) => ({
   type: USER_LOGIN,
   payload: {
     email,
+  },
+});
+
+export const attExpenses = (expenses) => ({
+  type: ATT_EXPENSES,
+  payload: {
+    expenses,
+  },
+});
+
+export const removeExpense = (expenses) => ({
+  type: REMOVE_EXPENSE,
+  payload: {
+    expenses,
   },
 });
 
@@ -43,10 +59,6 @@ export const fetchCurrenciesThunk = () => async (dispatch) => {
     dispatch(fetchCurrenciesFailure(error));
   }
 };
-
-export const summmation = () => ({
-  type: SUMMATION,
-});
 
 const fetchExchangeRatesSuccsess = (
   currencies,
@@ -79,7 +91,6 @@ export const fetchExchangeRatesSuccsessThunk = (
         method,
         tag },
     ));
-    dispatch(summmation());
   } catch (error) {
     dispatch(fetchCurrenciesFailure(error));
   }
