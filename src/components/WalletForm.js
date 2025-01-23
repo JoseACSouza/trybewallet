@@ -56,7 +56,10 @@ class WalletForm extends Component {
       currencies, isLoading,
     } = this.props;
     return (
-      <div>
+      <div
+        className="bg-cyan-800 flex justify-evenly p-4 items-center border-b-4
+        shadow-md"
+      >
         <label>
           <input
             type="number"
@@ -64,6 +67,7 @@ class WalletForm extends Component {
             value={ value }
             placeholder="Valor"
             onChange={ this.onChange }
+            className="p-1 rounded bg-slate-100"
             name="value"
           />
         </label>
@@ -73,6 +77,7 @@ class WalletForm extends Component {
             value={ description }
             placeholder="Descrição"
             onChange={ this.onChange }
+            className="p-1 rounded bg-slate-100"
             name="description"
           />
         </label>
@@ -80,6 +85,7 @@ class WalletForm extends Component {
           data-testid="currency-input"
           value={ currency }
           onChange={ this.onChange }
+          className="p-1 rounded bg-slate-100"
           name="currency"
         >
           {
@@ -93,6 +99,7 @@ class WalletForm extends Component {
           data-testid="method-input"
           value={ method }
           onChange={ this.onChange }
+          className="p-1 rounded bg-slate-100"
           name="method"
         >
           <option>Dinheiro</option>
@@ -103,6 +110,7 @@ class WalletForm extends Component {
           data-testid="tag-input"
           value={ tag }
           onChange={ this.onChange }
+          className="p-1 rounded bg-slate-100"
           name="tag"
         >
           <option>Alimentação</option>
@@ -114,6 +122,7 @@ class WalletForm extends Component {
         <button
           type="button"
           onClick={ this.sendButton }
+          className="p-1 bg-blue-500 rounded text-md"
         >
           Adicionar despesa
         </button>
