@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/trybewallet/static/css/main.b6e9e25d.css",
+    "main.js": "/trybewallet/static/js/main.482b24c3.js",
+    "static/media/logo.png": "/trybewallet/static/media/logo.404314ba103707128c30.png",
+    "static/media/dollarBill.svg": "/trybewallet/static/media/dollarBill.d7159ea901eeeb6a41c6d8a21851681a.svg",
+    "index.html": "/trybewallet/index.html",
+    "main.b6e9e25d.css.map": "/trybewallet/static/css/main.b6e9e25d.css.map",
+    "main.482b24c3.js.map": "/trybewallet/static/js/main.482b24c3.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b6e9e25d.css",
+    "static/js/main.482b24c3.js"
+  ]
+}
